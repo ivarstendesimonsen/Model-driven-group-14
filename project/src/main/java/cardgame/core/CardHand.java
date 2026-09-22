@@ -24,13 +24,4 @@ public class CardHand {
 	public int getCardCount(){
 		return this.currentHand.size();
 	}
-	public Card getCard(int n) {
-		if (n<0 || n>getCardCount())
-			throw new IllegalArgumentException("Velg et kortnummer mellom 0 og "+getCardCount());
-		return this.currentHand.get(n);
-	}
-	@Override
-	public String toString() {
-		return currentHand.toString();
-	}
 }

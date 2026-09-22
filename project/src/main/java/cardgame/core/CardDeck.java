@@ -11,9 +11,6 @@ import java.util.Collections;
 
 public class CardDeck {
 	private List<Card> currentDeck = new ArrayList<Card>();
-	public CardDeck() {
-
-	}
 	public CardDeck(int n) {
 		if (n>13)
 			throw new IllegalArgumentException("Kan ikke ha mer enn 13 kort i hver farge.");
@@ -35,9 +32,6 @@ public class CardDeck {
 		if (n<0 || n>getCardCount())
 			throw new IllegalArgumentException("Velg et kortnummer mellom 0 og "+getCardCount());
 		return this.currentDeck.get(n);
-	};
-	public int getCardPos(Card card) {
-		return this.currentDeck.indexOf(card);
 	};
 
 	public void shufflePerfectly() {
