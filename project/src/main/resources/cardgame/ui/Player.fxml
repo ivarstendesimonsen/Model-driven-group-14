@@ -23,6 +23,11 @@
             <Pane minWidth="0.0" prefWidth="800.0">
                <children>
                   <Pane fx:id="PlayedCard" layoutX="357.0" layoutY="18.0" prefHeight="265.0" prefWidth="200.0" />
+                  <Text fx:id="Status" layoutX="47.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
                </children></Pane>
             <GridPane fx:id="CardHand" gridLinesVisible="true" GridPane.rowIndex="1">
               <columnConstraints>
