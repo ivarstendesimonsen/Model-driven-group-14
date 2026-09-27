@@ -18,7 +18,7 @@ public class CardHand {
 	}
 	public Card play(Card n) {
 		if (!currentHand.contains(n))
-			throw new IllegalArgumentException("Valgt kort ikke i cardhand.");
+			throw new IllegalArgumentException("The selected card is not in the hand.");
 		return currentHand.remove(currentHand.indexOf(n));
 	}
 	public int getCardCount(){

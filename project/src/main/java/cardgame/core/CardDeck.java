@@ -13,7 +13,7 @@ public class CardDeck {
 	private List<Card> currentDeck = new ArrayList<Card>();
 	public CardDeck(int n) {
 		if (n>13)
-			throw new IllegalArgumentException("Kan ikke ha mer enn 13 kort i hver farge.");
+			throw new IllegalArgumentException("Cannot have more than 13 cards in each suit.");
 		for (Suit x : Suit.values()) {
 			for (int i = 1; i <= n; ++i) {
 				Card card = new Card(x,i);
@@ -29,7 +29,7 @@ public class CardDeck {
 	};
 	public Card getCard(int n) {
 		if (n<0 || n>getCardCount())
-			throw new IllegalArgumentException("Velg et kortnummer mellom 0 og "+getCardCount());
+			throw new IllegalArgumentException("Choose a card number between 0 and "+getCardCount());
 		return this.currentDeck.get(n);
 	};
 
