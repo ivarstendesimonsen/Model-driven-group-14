@@ -8,6 +8,6 @@ public final class CardImages {
 	private CardImages() {}
 
 	public static Image of(Card card) {
-		return new Image(CardImages.class.getResourceAsStream("/cards/" + card.toString() + ".png"));
+		return new Image(CardImages.class.getResourceAsStream("/cards/" + card.getSuit() + card.getFace() + ".png"));
 	}
 }
