@@ -9,7 +9,6 @@ import cardgame.core.Table;
 import cardgame.core.TableListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -36,9 +35,6 @@ public class PlayerController implements TableListener {
 	void initialize() {
 		updateAll();
 	}
-	private Image loadImage(Card card) {
-		return new Image(getClass().getResourceAsStream("/cards/"+card.toString()+".png"));
-	}
 	@FXML
 	public void updateMyCards() {
 		CardHand.getChildren().clear();
@@ -50,7 +46,7 @@ public class PlayerController implements TableListener {
 				goNextRow=0;
 				rowNumber++;
 			}
-			ImageView img = new ImageView(loadImage(card));
+			ImageView img = new ImageView(CardImages.of(card));
 			img.setPreserveRatio(true);
 			img.setFitHeight(125);
 			paneImg = new StackPane();
@@ -75,7 +71,7 @@ public class PlayerController implements TableListener {
 	public void displayLastPlayedCard() {
 		PlayedCard.getChildren().clear();
 		if (!table.getPlayedCards().isEmpty()) {
-			ImageView img = new ImageView(loadImage(table.getPlayedCards().get(table.getPlayedCards().size()-1)));
+			ImageView img = new ImageView(CardImages.of(table.getPlayedCards().get(table.getPlayedCards().size()-1)));
 			img.setPreserveRatio(true);
 			img.setFitHeight(225);
 			PlayedCard.getChildren().add(img);
