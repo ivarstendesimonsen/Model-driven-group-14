@@ -2,11 +2,11 @@ package cardgame.core;
 
 
 public class Card {
-	private char suit;
+	private Suit suit;
 	private int face;
-	public Card(char suit, int face) {
-		if (!(suit=='S' || suit=='H' || suit=='D' || suit== 'C' ))
-			throw new IllegalArgumentException("The cards' suit needs to be represented by their respective capital first letter. ('S','H','D','C')");
+	public Card(Suit suit, int face) {
+		if (suit == null)
+			throw new IllegalArgumentException("The card needs a suit.");
 		else
 			this.suit = suit;
 		if (face<1 || face>13 )
@@ -15,7 +15,7 @@ public class Card {
 			this.face = face;
 	}
 
-	public char getSuit() {
+	public Suit getSuit() {
 		return this.suit;
 	}
 	public int getFace() {

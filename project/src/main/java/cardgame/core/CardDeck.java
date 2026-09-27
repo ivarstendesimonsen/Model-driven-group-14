@@ -14,8 +14,7 @@ public class CardDeck {
 	public CardDeck(int n) {
 		if (n>13)
 			throw new IllegalArgumentException("Kan ikke ha mer enn 13 kort i hver farge.");
-		final char[] suits = {'S','H','D','C'};
-		for (char x : suits) {
+		for (Suit x : Suit.values()) {
 			for (int i = 1; i <= n; ++i) {
 				Card card = new Card(x,i);
 				this.currentDeck.add(card);
