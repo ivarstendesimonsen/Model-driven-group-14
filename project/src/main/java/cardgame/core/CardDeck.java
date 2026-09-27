@@ -28,8 +28,8 @@ public class CardDeck {
 		return this.currentDeck.size();
 	};
 	public Card getCard(int n) {
-		if (n<0 || n>getCardCount())
-			throw new IllegalArgumentException("Choose a card number between 0 and "+getCardCount());
+		if (n<0 || n>=getCardCount())
+			throw new IllegalArgumentException("Choose a card number between 0 and "+(getCardCount()-1));
 		return this.currentDeck.get(n);
 	};
 
