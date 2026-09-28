@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cardgame.core.Card;
+import cardgame.core.CardGame;
 import cardgame.core.Player;
 import cardgame.core.Table;
 import cardgame.core.TableListener;
@@ -17,6 +18,7 @@ import javafx.scene.text.Text;
 
 
 public class PlayerController implements TableListener {
+	CardGame game;
 	Table table;
 	Player player;
 	private List<Card> markedCards = new ArrayList<Card>();
@@ -24,10 +26,13 @@ public class PlayerController implements TableListener {
 	@FXML private GridPane PlayerList;
 	@FXML private GridPane CardHand;
 	@FXML private Pane PlayedCard;
+	@FXML private Text status;
 	@FXML private Button playBtn;
+	@FXML private Button passBtn;
 
-	public PlayerController(Table table, Player player) {
-		this.table=table;
+	public PlayerController(CardGame game, Player player) {
+		this.game=game;
+		this.table=game.getTable();
 		this.player=player;
 
 	}
@@ -70,10 +75,10 @@ public class PlayerController implements TableListener {
 	@FXML
 	public void displayLastPlayedCard() {
 		PlayedCard.getChildren().clear();
-		if (!table.getPlayedCards().isEmpty()) {
-			ImageView img = new ImageView(CardImages.of(table.getPlayedCards().get(table.getPlayedCards().size()-1)));
+		for (Card card:game.getLastPlay()) {
+			ImageView img = new ImageView(CardImages.of(card));
 			img.setPreserveRatio(true);
-			img.setFitHeight(225);
+			img.setFitHeight(160);
 			PlayedCard.getChildren().add(img);
 		}
 	}
@@ -92,14 +97,20 @@ public class PlayerController implements TableListener {
 	}
 
 	public void updatePlayBtn() {
-		playBtn.setDisable(markedCards.isEmpty());
-		playBtn.setText("Play  "+markedCards.size());
+		playBtn.setDisable(!game.canPlay(player, markedCards));
+		playBtn.setText(game.getActionName(player)+"  "+markedCards.size());
+		passBtn.setDisable(!game.canPass(player));
 	}
 	@FXML
 	public void playCards() {
 		List<Card> cards = new ArrayList<Card>(markedCards);
 		markedCards.clear();
-		table.play(player, cards);
+		game.play(player, cards);
+	}
+	@FXML
+	public void passTurn() {
+		markedCards.clear();
+		game.pass(player);
 	}
 
 	@FXML
@@ -109,12 +120,15 @@ public class PlayerController implements TableListener {
 		tempTextPlayer.setStyle("-fx-font: 18 System;");
 		PlayerList.add(tempTextPlayer, 0, 0);
 		for(Player player:table.getPlayers()) {
-			Text tempText = new Text(player.getName()+" ("+player.getCardHand().getCardCount()+" cards)");
+			Text tempText = new Text(game.describe(player));
 			PlayerList.add(tempText, 0, (table.getPlayers().indexOf(player)+1));
 		}
 	}
 	@Override
 	public void updateAll() {
+		// Cards may have left the hand, e.g. when given away in the card exchange.
+		markedCards.retainAll(player.getCardHand().getCurrentHand());
+		status.setText(game.getStatus(player));
 		updatePlayerList();
 		updateMyCards();
 		displayLastPlayedCard();
@@ -122,7 +136,7 @@ public class PlayerController implements TableListener {
 	}
 	void bootPlayer(Player player) {
 		table.removeListeners(this);
-		table.removePlayer(player);
+		game.removePlayer(player);
 	}
 
 }

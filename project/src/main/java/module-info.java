@@ -5,5 +5,6 @@ open module cardgame {
 	requires javafx.graphics;
 
 	exports cardgame.core;
+	exports cardgame.president;
 	exports cardgame.ui;
 }

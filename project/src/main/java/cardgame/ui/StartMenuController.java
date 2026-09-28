@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cardgame.core.Player;
-import cardgame.core.Table;
+import cardgame.president.PresidentGame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +14,7 @@ import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 public class StartMenuController {
-	Table table;
+	PresidentGame game;
 	List<PlayerController> controllerList;
 	List<Stage> stages;
 	private boolean sliderChanged;
@@ -36,12 +36,12 @@ public class StartMenuController {
 	@FXML
 	void startNewGame() {
 		if (sliderChanged==true)
-			table=new Table(sliderPlayerValue);
+			game=new PresidentGame(sliderPlayerValue);
 		else
-			table=new Table((int) Math.round(sliderPlayers.getValue()));
-		for (Player player:table.getPlayers()) {
+			game=new PresidentGame((int) Math.round(sliderPlayers.getValue()));
+		for (Player player:game.getTable().getPlayers()) {
 			try {
-				PlayerController playercontroller = new PlayerController(this.table,player);
+				PlayerController playercontroller = new PlayerController(this.game,player);
 				FXMLLoader playerfxml = new FXMLLoader(getClass().getResource("/cardgame/ui/Player.fxml"));
 				playerfxml.setController(playercontroller);
 				Parent root =playerfxml.load();
@@ -53,9 +53,9 @@ public class StartMenuController {
 				stage.setScene(scene);
 				stage.show();
 				stage.setOnCloseRequest(event -> playercontroller.bootPlayer(player));
-				stage.setTitle("Player"+(table.getPlayers().indexOf(player)+1));
+				stage.setTitle("President og Boms - "+player.getName());
 				controllerList.add(playercontroller);
-				table.addListeners(playercontroller);
+				game.getTable().addListeners(playercontroller);
 				stages.add(stage);
 
 			} catch (IOException e) {
