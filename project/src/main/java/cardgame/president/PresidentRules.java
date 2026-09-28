@@ -67,10 +67,10 @@ public final class PresidentRules {
 			default: face = String.valueOf(card.getFace());
 		}
 		switch (card.getSuit()) {
-			case S: return face + "♠";
-			case H: return face + "♥";
-			case D: return face + "♦";
-			default: return face + "♣";
+			case S: return face + "\u2660";
+			case H: return face + "\u2665";
+			case D: return face + "\u2666";
+			default: return face + "\u2663";
 		}
 	}
 

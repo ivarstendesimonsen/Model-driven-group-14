@@ -217,7 +217,7 @@ public class PresidentGame implements CardGame {
 				else if (player != turn)
 					lines.add("Waiting for " + turn.getName() + ".");
 				else if (lastPlay.isEmpty())
-					lines.add(canPass(player) ? "Your lead, but the 3♣ can't be led, so you have to pass."
+					lines.add(canPass(player) ? "Your lead, but the 3\u2663 can't be led, so you have to pass."
 							: "Your lead: play a single, pair, triple or four of a kind.");
 				else
 					lines.add("Your turn: beat " + PresidentRules.describe(lastPlay) + " with " + cardCount(lastPlay.size()) + ", or pass.");
@@ -232,7 +232,7 @@ public class PresidentGame implements CardGame {
 
 	@Override
 	public String describe(Player player) {
-		String line = (phase == Phase.PLAYING && player == turn ? "▶ " : "") + player.getName()
+		String line = (phase == Phase.PLAYING && player == turn ? "\u25B6 " : "") + player.getName()
 				+ " (" + player.getCardHand().getCardCount() + ")";
 		if (roles.containsKey(player))
 			line += " " + roles.get(player);
