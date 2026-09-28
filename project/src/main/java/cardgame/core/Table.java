@@ -13,12 +13,16 @@ public class Table {
 
 	public Table(int players) {
 		this.carddeck = new CardDeck(13);
-		carddeck.shufflePerfectly();
 		for(int i = 1; i <= players; ++i) {
 			Player player = new Player(i);
 			player.setCardHand(new CardHand());
 			this.players.add(player);
 		}
+		shuffleAndDeal();
+	}
+
+	public void shuffleAndDeal() {
+		carddeck.shufflePerfectly();
 		while (carddeck.getCardCount()>0) {
 			for (Player player:this.players) {
 				if(carddeck.getCardCount()>0) {
@@ -44,6 +48,17 @@ public class Table {
 			this.playedCards.add(player.getCardHand().play(card));
 		}
 		fireStateChanged();
+	}
+	public void clearPlayedCards() {
+		this.carddeck.getCurrentDeck().addAll(this.playedCards);
+		this.playedCards.clear();
+	}
+	public void collectCards() {
+		clearPlayedCards();
+		for (Player player:this.players) {
+			this.carddeck.getCurrentDeck().addAll(player.getCardHand().getCurrentHand());
+			player.getCardHand().getCurrentHand().clear();
+		}
 	}
 	public void removePlayer(Player player) {
 		this.carddeck.getCurrentDeck().addAll(player.getCardHand().getCurrentHand());
