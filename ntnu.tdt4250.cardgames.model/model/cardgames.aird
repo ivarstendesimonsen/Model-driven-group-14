@@ -5,7 +5,7 @@
     <semanticResources>cardgames.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_ZP8kYLvqEfG3iviB19vxRg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ZQfW8LvqEfG3iviB19vxRg" name="cardgames" repPath="#_ZQbFgLvqEfG3iviB19vxRg" changeId="1791210650790">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_ZQfW8LvqEfG3iviB19vxRg" name="cardgames" repPath="#_ZQbFgLvqEfG3iviB19vxRg" changeId="1791218825991">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="cardgames.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -753,21 +753,21 @@
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_LvFcsMCmEfG2vvj9teaxRg" name="CardGame" tooltipText="" outgoingEdges="_Qgk1z8CmEfG2vvj9teaxRg _kbXwWMCmEfG2vvj9teaxRg _mGoYTsCmEfG2vvj9teaxRg _pu4b3MCnEfG2vvj9teaxRg _IxmJIMCsEfG2vvj9teaxRg _YqBlLMCtEfG2vvj9teaxRg" width="12" height="10">
       <target xmi:type="ecore:EClass" href="cardgames.ecore#//CardGame"/>
       <semanticElements xmi:type="ecore:EClass" href="cardgames.ecore#//CardGame"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_inXV4cDDEfG2vvj9teaxRg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_Zd_NIcDcEfGTRbnjSoQz3g" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_dVEVwMDDEfG2vvj9teaxRg" name="minNumberOfPlayers : EInt" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="cardgames.ecore#//CardGame/minNumberOfPlayers"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="cardgames.ecore#//CardGame/minNumberOfPlayers"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_dVEVwMDDEfG2vvj9teaxRg" name="minPlayers : EInt" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="cardgames.ecore#//CardGame/minPlayers"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="cardgames.ecore#//CardGame/minPlayers"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_kuvAF8DFEfG2vvj9teaxRg" labelAlignment="LEFT" description="_jLz8OMDCEfG2vvj9teaxRg">
           <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_f6p38MDDEfG2vvj9teaxRg" name="maxNumberOfPlayers : EInt" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="cardgames.ecore#//CardGame/maxNumberOfPlayers"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="cardgames.ecore#//CardGame/maxNumberOfPlayers"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_f6p38MDDEfG2vvj9teaxRg" name="maxPlayers : EInt" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="cardgames.ecore#//CardGame/maxPlayers"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="cardgames.ecore#//CardGame/maxPlayers"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_lS7SQcDFEfG2vvj9teaxRg" labelAlignment="LEFT" description="_jLz8OMDCEfG2vvj9teaxRg">
           <labelFormat>bold</labelFormat>
         </ownedStyle>
