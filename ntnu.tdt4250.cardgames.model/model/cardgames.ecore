@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cardgame" nsURI="http://tdt4250.ntnu.no/cardgames" nsPrefix="cardgames">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Suit">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -38,6 +42,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CardGame">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="validNumberOfPlayersConstraint"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="validNumberOfPlayersConstraint" value="self.minPlayers >= self.roles->size() and self.minPlayers >= 2 and self.minPlayers &lt;= self.maxPlayers"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deck" lowerBound="1" eType="#//Deck"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
@@ -50,9 +60,9 @@
         eType="#//WinCondition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="hand" lowerBound="1" eType="#//Hand"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minNumberOfPlayers" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minPlayers" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxNumberOfPlayers" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxPlayers" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CardExchange">
