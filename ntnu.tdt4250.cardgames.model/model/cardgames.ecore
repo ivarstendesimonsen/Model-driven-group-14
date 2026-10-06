@@ -1,28 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cardgame" nsURI="http://tdt4250.ntnu.no/cardgames" nsPrefix="cardgames">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Suit">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="card" lowerBound="1" eType="#//Card"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rank">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="card" lowerBound="1" eType="#//Card"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Card">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deck" lowerBound="1" upperBound="52"
-        eType="#//Deck"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hand" upperBound="52" eType="#//Hand"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pile" upperBound="52" eType="#//Pile"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Rule" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SpecialCardRule" eSuperTypes="#//Rule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rank" eType="#//Rank"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suit" eType="#//Suit"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alwaysPlayable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="effect" eType="#//Effect"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Rule" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="card" upperBound="-1" eType="#//Card"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClearPileRule" eSuperTypes="#//Rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfSameRequiredToClear"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="playerWhoClearedStarts"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SpecialCardRule" eSuperTypes="#//Rule"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ClearPileRule" eSuperTypes="#//Rule"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Deck"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Pile"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Hand"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Deck">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suits" lowerBound="1" upperBound="-1"
+        eType="#//Suit" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ranks" lowerBound="1" upperBound="-1"
+        eType="#//Rank" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Hand">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allCards" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fixedPerPlayer" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Role">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hand" eType="#//Hand"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CardGame">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="validNumberOfPlayersConstraint"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="validNumberOfPlayersConstraint" value="self.minPlayers >= self.roles->size() and self.minPlayers >= 2 and self.minPlayers &lt;= self.maxPlayers"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deck" lowerBound="1" eType="#//Deck"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//Rule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
+        eType="#//Role" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exchanges" upperBound="-1"
+        eType="#//CardExchange" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="winCondition" lowerBound="1"
+        eType="#//WinCondition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hand" lowerBound="1" eType="#//Hand"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minPlayers" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxPlayers" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CardExchange">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfCards" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WinCondition" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PlayRule" eSuperTypes="#//Rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minimumNumberOfCards" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumNumberOfCards" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requireSameAmountOfCards"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requireSameRank" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validPlayTypes" lowerBound="1"
+        upperBound="-1" eType="#//ValidPlayType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ValidPlayType">
+    <eLiterals name="SAME_RANK"/>
+    <eLiterals name="SAME_SUIT" value="1"/>
+    <eLiterals name="HIGHER_RANK" value="2"/>
+    <eLiterals name="LOWER_RANK" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="firstEmptyHand" eSuperTypes="#//WinCondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="continueToOneLeft" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Effect">
+    <eLiterals name="CLEAR_PILE"/>
+    <eLiterals name="CHANGE_VALID_SUIT" value="1"/>
   </eClassifiers>
 </ecore:EPackage>
-    
