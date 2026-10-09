@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: ntnu.tdt4250.cardgames.dsl.ui
+Bundle-ManifestVersion: 2
+Bundle-Name: ntnu.tdt4250.cardgames.dsl.ui
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: ntnu.tdt4250.cardgames.dsl.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: ntnu.tdt4250.cardgames.dsl,
+ ntnu.tdt4250.cardgames.dsl.ide,
+ ntnu.tdt4250.cardgames,
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.ui.editors;bundle-version="3.14.300",
+ org.eclipse.ui.ide;bundle-version="3.18.500"
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-21
