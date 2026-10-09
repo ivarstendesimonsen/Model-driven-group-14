@@ -9,7 +9,9 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: ntnu.tdt4250.cardgames.dsl,
  ntnu.tdt4250.cardgames,
  org.eclipse.xtext.testing,
- org.eclipse.xtext.xbase.testing
+ org.eclipse.xtext.xbase.testing,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.44.0"
 Import-Package: org.junit.jupiter.api;version="[6.0.0,7.0.0)",
  org.junit.jupiter.api.extension;version="[6.0.0,7.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: ntnu.tdt4250.cardgames.dsl.tests;x-internal=true

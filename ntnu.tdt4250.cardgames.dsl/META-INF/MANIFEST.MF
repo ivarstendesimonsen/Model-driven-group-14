@@ -9,5 +9,17 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: ntnu.tdt4250.cardgames,
  org.eclipse.xtext,
  org.eclipse.xtext.xbase,
- org.eclipse.equinox.common;bundle-version="3.19.0"
+ org.eclipse.equinox.common;bundle-version="3.19.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.44.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: ntnu.tdt4250.cardgames.dsl.serializer,
+ ntnu.tdt4250.cardgames.dsl.validation,
+ ntnu.tdt4250.cardgames.dsl.parser.antlr.internal,
+ ntnu.tdt4250.cardgames.dsl,
+ ntnu.tdt4250.cardgames.dsl.services,
+ ntnu.tdt4250.cardgames.dsl.scoping,
+ ntnu.tdt4250.cardgames.dsl.generator,
+ ntnu.tdt4250.cardgames.dsl.parser.antlr,
+ ntnu.tdt4250.cardgames.dsl.formatting2
+Import-Package: org.apache.log4j

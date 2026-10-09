@@ -9,5 +9,8 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: ntnu.tdt4250.cardgames.dsl,
  ntnu.tdt4250.cardgames,
  org.eclipse.xtext.ide,
- org.eclipse.xtext.xbase.ide
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-21
+Export-Package: ntnu.tdt4250.cardgames.dsl.ide.contentassist.antlr.internal,
+ ntnu.tdt4250.cardgames.dsl.ide.contentassist.antlr
